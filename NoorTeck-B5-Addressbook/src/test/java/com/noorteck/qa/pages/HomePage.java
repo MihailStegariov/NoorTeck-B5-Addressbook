@@ -8,7 +8,7 @@ import com.noorteck.qa.utils.CommonUI;
 
 public class HomePage extends CommonUI {
 
-	@FindBy(css = ".nav-item.nav-link.active")
+	@FindBy(xpath = "//a[@class = 'nav-item nav-link active']")
 	WebElement homeButton;
 
 	@FindBy(xpath = "//*[text()='Addresses']")
@@ -16,6 +16,9 @@ public class HomePage extends CommonUI {
 
 	@FindBy(xpath = "//*[text()='Sign out']")
 	WebElement signOutButton;
+
+	@FindBy(xpath = "//h1[text() = 'Welcome to Address Book']")
+	WebElement addressBookTitle;
 
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -31,5 +34,9 @@ public class HomePage extends CommonUI {
 
 	public void clickSignOut() {
 		click(signOutButton);
+	}
+
+	public String welcomeText() {
+		return getText(addressBookTitle);
 	}
 }

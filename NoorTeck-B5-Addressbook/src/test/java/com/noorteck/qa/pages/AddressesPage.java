@@ -8,6 +8,9 @@ import com.noorteck.qa.utils.CommonUI;
 
 public class AddressesPage extends CommonUI{
 
+	@FindBy(xpath = "//a[text() = 'New Address")
+	WebElement newAddressButton;
+	
 	@FindBy(css = "input[id = 'address_first_name']")
 	WebElement firstNameField;
 	
@@ -53,8 +56,14 @@ public class AddressesPage extends CommonUI{
 	@FindBy(css = "//a[@data-test = 'list']")
 	WebElement clickListButton;
 	
+	@FindBy(xpath = "//td[text() = 'John']")
+	WebElement firstNameData;
+	
 	public AddressesPage() {
 		PageFactory.initElements(driver, this);
+	}
+	public void clickNewAddress() {
+		click(newAddressButton);
 	}
 	
 	public void enterfirstName(String firstName) {
@@ -82,13 +91,9 @@ public class AddressesPage extends CommonUI{
 	}
 	
 	
-	//TODO dropDown method ???
-	
-	
-	
-	
-	
-	
+	public void chooseFromStateDropDown(String methodName, String indexTextValue) {
+		selectFromDropdown(stateDropDown, methodName, indexTextValue);
+	}
 	
 	public void enterZipCode(String zipCode) {
 		enter(zipCodeField, zipCode);
@@ -132,5 +137,8 @@ public class AddressesPage extends CommonUI{
 	
 	public void clickOnListButton() {
 		click(clickListButton);
+	}
+	public String enterFirstName() {
+		return getText(firstNameData);
 	}
 }

@@ -14,12 +14,9 @@ public class SignInPage extends CommonUI{
 	@FindBy(id = "session_password")
 	WebElement passwordField;
 
-	@FindBy(css = ".btn.btn-primary")
+	@FindBy(name = "commit")
 	WebElement signInButton;
 	
-	@FindBy(xpath = "//*[@id=\"navbar\"]/div[1]/a[2]")
-	WebElement addressesButton;
-
 	public SignInPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -35,10 +32,9 @@ public class SignInPage extends CommonUI{
 	public void clickSignIn() {
 		click(signInButton);
 		
-	}
 	
-		public void clickAddresses() {
-			click(addressesButton);
+	
+
 		
 	}
 }

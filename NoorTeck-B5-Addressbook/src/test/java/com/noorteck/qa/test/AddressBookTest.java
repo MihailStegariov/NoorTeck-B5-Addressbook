@@ -7,43 +7,44 @@ public class AddressBookTest extends ObjInitialize {
 
 	public static void main(String[] args) {
 
-		String url = " http://a.testaddressbook.com/sign_up";
-		url = "http://a.testaddressbook.com/sign_in";
+		String url = "http://a.testaddressbook.com/sign_up";
 
-		CommonUI commonUIObj = new CommonUI();
-		ObjInitialize obj = new ObjInitialize();
-		AddressBookTest testObj = new AddressBookTest();
+		CommonUI.openBrowser("chrome");
+		CommonUI.navigate(url);
+		initializeClassObj();
+		addressBookTestOne();
+		addressBookTestTwo();
+		CommonUI.quitBrowser();
+//		url = "http://a.testaddressbook.com/sign_in"; 
+//		CommonUI.openBrowser("chrome");
+//		CommonUI.navigate(url);
+//		initializeClassObj();
+//		addressBookTestTwo();
+//		CommonUI.quitBrowser();
 
-		commonUIObj.openBrowser("chrome");
-		commonUIObj.navigate(url);
-
-		obj.initializeClassObj();
-		testObj.addressBookTestOne();
-		testObj.addressBookTestTwo();
-
-		commonUIObj.quitBrowser();
 	}
 
-	public void addressBookTestOne() {
+	public static void addressBookTestOne() {
 
+		
 		signUpObj.enterEmail("john_cena1998@gmail.com");
-		signUpObj.enterPassword("12345678");
+		signUpObj.enterPassword("John12345678");
 		signUpObj.clickSignUp();
 
 //TODO verify if the message is displayed
 	}
 
-	public void addressBookTestTwo() {
+	public static void addressBookTestTwo() {
 
 		signInObj.enterEmail("john_cena1998@gmail.com");
 		signInObj.enterPassword("12345678");
 		signInObj.clickSignIn();
-		signInObj.clickAddresses();
+		homeObj.clickAddresses();
 		addressesObj.enterfirstName("John");
 		addressesObj.enterLastName("Cena");
 		addressesObj.enterAddressOne("1234 New Ridge Rd");
 		addressesObj.enterCityField("Silver Spring");
-		// TODO state drop down
+		addressesObj.chooseFromStateDropDown("value", "MD");
 		addressesObj.clickCountryRadio();
 		addressesObj.enterAge("22");
 		addressesObj.enterPhone("123-2334-3434");
